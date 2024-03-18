@@ -18,10 +18,6 @@ on:
         description: 'Use multiresolution modifier for low poly model'
         required: false
         default: '3'
-      source_obj:
-        description: 'Source obj file for low poly model'
-        required: false
-        default: 'source.obj'
 
 jobs:
   build:
@@ -57,7 +53,7 @@ jobs:
 
       - name: Convert to Low Poly
         run: |
-          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }} --texture-resolution ${{ github.event.inputs.texture_res }} --multiresolution-levels ${{ github.event.inputs.multiresolution }} --source-obj ${{ github.event.inputs.source_obj }}
+          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }} --texture-resolution ${{ github.event.inputs.texture_res }} --multiresolution-levels ${{ github.event.inputs.multiresolution }} 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -10,6 +10,18 @@ on:
         description: 'Target number of faces for the low poly model'
         required: false
         default: 7500
+      texture_res:
+        description: 'Texture resolution for the low poly model'
+        required: false
+        default: 1024
+      multiresolution:
+        description: 'Use multiresolution modifier for low poly model'
+        required: false
+        default: '3'
+      source_obj:
+        description: 'Source obj file for low poly model'
+        required: false
+        default: 'source.obj'
 
 jobs:
   build:
@@ -45,7 +57,7 @@ jobs:
 
       - name: Convert to Low Poly
         run: |
-          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }}
+          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }} --texture-res ${{ github.event.inputs.texture_res }} --multiresolution ${{ github.event.inputs.multiresolution }} --source-obj ${{ github.event.inputs.source_obj }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
